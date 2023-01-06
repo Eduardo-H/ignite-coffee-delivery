@@ -60,3 +60,22 @@ export const HeroPerk = styled.div<HeroPerksProps>`
     color: ${(props) => props.theme.white};
   }
 `;
+
+export const CoffeeListContainer = styled.div`
+  h2 {
+    font-size: 2rem;
+    font-family: 'Baloo 2', sans-serif;
+    line-height: 130%;
+    font-weight: bolder;
+    color: ${(props) => props.theme['base-title']};
+  }
+`;
+
+export const CoffeeList = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 2rem;
+  grid-row-gap: 2.5rem;
+
+  margin: 3rem 0;
+`;

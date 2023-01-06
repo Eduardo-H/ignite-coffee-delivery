@@ -1,7 +1,10 @@
 import { Coffee, Package, ShoppingCart, Timer } from 'phosphor-react';
 import heroCoffeeImg from '../../assets/hero-coffee.png';
+import { CoffeeCard } from '../../components/CoffeeCard';
 
-import { HeroContainer, HeroInfo, HeroPerk, HeroPerks, HomeContainer } from './styles';
+import cafeComLeiteImg from '../../assets/coffees/cafe-com-leite.png';
+
+import { CoffeeList, CoffeeListContainer, HeroContainer, HeroInfo, HeroPerk, HeroPerks, HomeContainer } from './styles';
 
 export function Home() {
 	return (
@@ -36,6 +39,22 @@ export function Home() {
 				</HeroInfo>
 				<img src={heroCoffeeImg} />
 			</HeroContainer>
+
+			<CoffeeListContainer>
+				<h2>Nossos cafés</h2>
+
+				<CoffeeList>
+					<CoffeeCard
+						key="1"
+						id="1"
+						name="Café com Leite"
+						description="Meio a meio de expresso tradicional com leite vaporizado"
+						price={9.90}
+						tags={['TRADICIONAL', 'COM LEITE']}
+						photoUrl={cafeComLeiteImg}
+					/>
+				</CoffeeList>
+			</CoffeeListContainer>
 		</HomeContainer>
 	);
 }
