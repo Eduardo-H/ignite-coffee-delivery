@@ -8,12 +8,12 @@ export const HeaderContainer = styled.header`
   max-width: 70rem;
   margin: 0 auto;
   padding: 2rem 0;
-`
+`;
 
 export const HeaderButtons = styled.div`
   display: flex;
   gap: 0.75rem;
-`
+`;
 
 const BaseButton = styled.button`
   display: flex;
@@ -27,7 +27,7 @@ const BaseButton = styled.button`
   font-size: 0.875rem;
 
   transition: all 0.2s;
-`
+`;
 
 export const LocationButton = styled(BaseButton)`
   background: ${(props) => props.theme['purple-light']};
@@ -45,7 +45,7 @@ export const LocationButton = styled(BaseButton)`
       color: ${(props) => props.theme.white};
     }
   }
-`
+`;
 
 export const CartButton = styled(BaseButton)`
   background: ${(props) => props.theme['yellow-light']};
@@ -55,4 +55,4 @@ export const CartButton = styled(BaseButton)`
     background: ${(props) => props.theme.yellow};
     color: ${(props) => props.theme.white};
   }
-`
+`;
