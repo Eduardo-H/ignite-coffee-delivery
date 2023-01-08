@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Bank, CreditCard, MapPinLine, Money } from 'phosphor-react';
+import { Bank, CreditCard, CurrencyDollar, MapPinLine, Money } from 'phosphor-react';
 
 import { Form, FormCard, FormContainer, FormInputList, PaymentTypesList, PaymentTypeButton } from './styles';
 
@@ -43,7 +43,7 @@ export function CheckoutForm() {
 
 				<FormCard>
 					<header>
-						<Money size={22} />
+						<CurrencyDollar size={22} />
 
 						<div>
 							<h2>Pagamento</h2>
