@@ -81,36 +81,6 @@ export const CardActions = styled.div`
   gap: 0.5rem;
 `;
 
-export const AmountInput = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-
-  height: max-content;
-  padding: 0.75rem 0.5rem;
-  text-align: center;
-
-  background: ${(styled) => styled.theme['base-button']};
-  border-radius: 6px;
-
-  button {
-    border: 0;
-    background: transparent;
-    cursor: pointer;
-    color: ${(styled) => styled.theme['purple']};
-
-    transition: color 0.2s;
-
-    :hover {
-      color: ${(styled) => styled.theme['purple-dark']};
-    }
-
-    :disabled {
-      cursor: not-allowed;
-    }
-  }
-`;
-
 export const CartButton = styled.button`
   display: flex;
   border: 0;

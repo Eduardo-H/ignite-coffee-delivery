@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { Minus, Plus, ShoppingCartSimple } from 'phosphor-react';
+import { ShoppingCartSimple } from 'phosphor-react';
 
-import { AmountInput, CoffeeCardContainer, CardFooter, Tag, Tags, CardActions, CartButton } from './styles';
+import { AmountInput } from '../AmountInput';
+
+import { CoffeeCardContainer, CardFooter, Tag, Tags, CardActions, CartButton } from './styles';
 
 interface CoffeeCardProps {
   id: string;
@@ -22,17 +24,15 @@ export function CoffeeCard({
 }: CoffeeCardProps) {
 	const [amount, setAmount] = useState(1);
 
+	function handleIncreaseAmount() {
+		setAmount((state) => state + 1);
+	}
+
 	function handleDecreaseAmount() {
 		if (amount > 1) {
 			setAmount((state) => state - 1);
 		}
 	}
-
-	function handleIncreaseAmount() {
-		setAmount((state) => state + 1);
-	}
-
-	const isDecreseAmountButtonDisabled = amount === 1;
 
 	return (
 		<CoffeeCardContainer>
@@ -56,15 +56,12 @@ export function CoffeeCard({
 				</span>
 
 				<CardActions>
-					<AmountInput>
-						<button type="button" onClick={handleDecreaseAmount} disabled={isDecreseAmountButtonDisabled}>
-							<Minus />
-						</button>
-						{amount}
-						<button type="button" onClick={handleIncreaseAmount}>
-							<Plus />
-						</button>
-					</AmountInput>
+					<AmountInput
+						amount={amount}
+						onIncreaseAmount={handleIncreaseAmount}
+						onDecreaseAmount={handleDecreaseAmount}
+					/>
+
 					<CartButton>
 						<ShoppingCartSimple weight="fill" size={22} />
 					</CartButton>
