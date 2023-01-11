@@ -28,17 +28,18 @@ export function CartProvider({ children }: CartProviderProps) {
 
 		if (existentItem) {
 			setItems((state) => {
-				existentItem.price = item.price;
-				existentItem.quantity = item.quantity;
+				state.forEach(cartItem => {
+					if (cartItem.id === item.id) {
+						cartItem.price = item.price;
+						cartItem.quantity = item.quantity;
+					}
+				});
 
 				return state;
 			});
-
-			existentItem.price = item.price;
-			existentItem.quantity = item.quantity;
 		} else {
 			setItems((state) => [...state, item]);
-		}		
+		}
 	}
 
 	function removeItemFromCart(id: string) {

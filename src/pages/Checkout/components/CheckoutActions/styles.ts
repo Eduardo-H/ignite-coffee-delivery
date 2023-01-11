@@ -16,6 +16,14 @@ export const ActionsCard = styled.div`
   padding: 2.5rem;
 `;
 
+export const EmptyCartText = styled.p`
+  text-align: center;
+  font-size: 0.875rem;
+  color: ${(props) => props.theme['base-label']};
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid ${(props) => props.theme['base-button']};
+`;
+
 export const PurchaseSummary = styled.div`
   margin-top: 1.25rem;
 
@@ -68,6 +76,11 @@ export const FinishPurchaseButton = styled.button`
   transition: all 0.2s;
 
   :hover {
+    background: ${(props) => props.theme['yellow-dark']};
+  }
+
+  :disabled {
+    cursor: not-allowed;
     background: ${(props) => props.theme['yellow-dark']};
   }
 `;

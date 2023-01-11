@@ -1,6 +1,7 @@
 import { Trash } from 'phosphor-react';
 import { useState } from 'react';
 import { AmountInput } from '../../../../components/AmountInput';
+import { useCart } from '../../../../hooks/useCart';
 import { Actions, CheckoutCoffeeCardContainer, RemoveCoffeeButton } from './styles';
 
 interface CheckoutCoffeeCardProps {
@@ -8,6 +9,7 @@ interface CheckoutCoffeeCardProps {
   name: string;
   photoUrl: string;
   price: number;
+	quantity: number;
   currentPrice: number;
 }
 
@@ -15,19 +17,44 @@ export function CheckoutCoffeeCard({
 	id,
 	name,
 	photoUrl,
+	quantity,
 	price,
 	currentPrice
 }: CheckoutCoffeeCardProps) {
-	const [amount, setAmount] = useState(1);
+	const [amount, setAmount] = useState(quantity);
+
+	const { addItemToCart, removeItemFromCart } = useCart();
 
 	function handleIncreaseAmount() {
-		setAmount((state) => state + 1);
+		const updatedAmount = amount + 1;
+
+		setAmount(updatedAmount);
+		updateItemQuantityAndPrice(updatedAmount);
 	}
 
 	function handleDecreaseAmount() {
 		if (amount > 1) {
-			setAmount((state) => state - 1);
+			const updatedAmount = amount - 1;
+
+			setAmount(updatedAmount);
+			updateItemQuantityAndPrice(updatedAmount);
 		}
+	}
+
+	function handleRemoveItemFromCart() {
+		removeItemFromCart(id);
+	}
+
+	function updateItemQuantityAndPrice(amount: number) {
+		const itemPrice = price * amount;
+
+		addItemToCart({
+			id,
+			name,
+			photoUrl,
+			price: itemPrice,
+			quantity: amount
+		});
 	}
 
 	return (
@@ -50,7 +77,7 @@ export function CheckoutCoffeeCard({
 						onDecreaseAmount={handleDecreaseAmount}
 					/>
 
-					<RemoveCoffeeButton>
+					<RemoveCoffeeButton onClick={handleRemoveItemFromCart}>
 						<Trash size={16} />
             Remover
 					</RemoveCoffeeButton>

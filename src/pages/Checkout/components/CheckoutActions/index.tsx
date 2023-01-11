@@ -2,7 +2,7 @@ import { useCart } from '../../../../hooks/useCart';
 
 import { CheckoutCoffeeCard } from '../CheckoutCoffeeCard';
 
-import { ActionsCard, CheckoutActionsContainer, FinishPurchaseButton, PurchaseSummary } from './styles';
+import { ActionsCard, CheckoutActionsContainer, EmptyCartText, FinishPurchaseButton, PurchaseSummary } from './styles';
 
 export function CheckoutActions() {
 	const { items } = useCart();
@@ -10,22 +10,32 @@ export function CheckoutActions() {
 	const itemsTotal = items.reduce((acc, current) => acc + current.price, 0);
 	const deliveryFee = itemsTotal * 0.2;
 	const totalPrice = itemsTotal + deliveryFee;
+
+	const isFinishPurchaseButtonDisabled = items.length === 0;
 	
 	return (
 		<CheckoutActionsContainer>
 			<h1>Cafés selecionados</h1>
 
 			<ActionsCard>
-				{items.map(coffee => (
-					<CheckoutCoffeeCard
-						key={coffee.id}
-						id={coffee.id}
-						name={coffee.name}
-						photoUrl={coffee.photoUrl}
-						price={coffee.price}
-						currentPrice={coffee.price}
-					/>
-				))}
+				{
+					items.length > 0
+						? (
+							items.map(coffee => (
+								<CheckoutCoffeeCard
+									key={coffee.id}
+									id={coffee.id}
+									name={coffee.name}
+									photoUrl={coffee.photoUrl}
+									quantity={coffee.quantity}
+									price={coffee.price}
+									currentPrice={coffee.price}
+								/>
+							))
+						) : (
+							<EmptyCartText>Seu carrinho está vazio</EmptyCartText>
+						)
+				}
 
 				<PurchaseSummary>
 					<div>
@@ -42,7 +52,7 @@ export function CheckoutActions() {
 					</div>
 				</PurchaseSummary>
 
-				<FinishPurchaseButton>
+				<FinishPurchaseButton disabled={isFinishPurchaseButtonDisabled}>
 					Confirmar pedido
 				</FinishPurchaseButton>
 			</ActionsCard>
