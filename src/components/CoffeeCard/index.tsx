@@ -4,6 +4,7 @@ import { ShoppingCartSimple } from 'phosphor-react';
 import { AmountInput } from '../AmountInput';
 
 import { CoffeeCardContainer, CardFooter, Tag, Tags, CardActions, CartButton } from './styles';
+import { useCart } from '../../hooks/useCart';
 
 interface CoffeeCardProps {
   id: string;
@@ -24,6 +25,8 @@ export function CoffeeCard({
 }: CoffeeCardProps) {
 	const [amount, setAmount] = useState(1);
 
+	const { addItemToCart } = useCart();
+
 	function handleIncreaseAmount() {
 		setAmount((state) => state + 1);
 	}
@@ -32,6 +35,18 @@ export function CoffeeCard({
 		if (amount > 1) {
 			setAmount((state) => state - 1);
 		}
+	}
+
+	function handleAddItemToCart() {
+		const itemPrice = price * amount;
+
+		addItemToCart({
+			id,
+			name,
+			photoUrl,
+			price: itemPrice,
+			quantity: amount
+		});
 	}
 
 	return (
@@ -62,7 +77,7 @@ export function CoffeeCard({
 						onDecreaseAmount={handleDecreaseAmount}
 					/>
 
-					<CartButton>
+					<CartButton onClick={handleAddItemToCart}>
 						<ShoppingCartSimple weight="fill" size={22} />
 					</CartButton>
 				</CardActions>

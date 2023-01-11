@@ -14,7 +14,7 @@ export function App() {
 				<CartProvider>
 					<Router />
 				</CartProvider>
-			</BrowserRouter>
+			</BrowserRouter>			
 
 			<GlobalStyle />
 		</ThemeProvider>

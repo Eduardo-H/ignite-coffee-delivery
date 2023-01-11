@@ -10,7 +10,7 @@ type CartItem = {
 
 interface CartContextData {
   items: CartItem[];
-  addItemToCart: () => void;
+  addItemToCart: (item: CartItem) => void;
   removeItemFromCart: (id: string) => void;
 }
 
@@ -23,8 +23,22 @@ const CartContext = createContext({} as CartContextData);
 export function CartProvider({ children }: CartProviderProps) {
 	const [items, setItems] = useState<CartItem[]>([]);
 
-	function addItemToCart() {
-		setItems([]);
+	function addItemToCart(item: CartItem) {
+		const existentItem = items.find(cartItem => cartItem.id === item.id);
+
+		if (existentItem) {
+			setItems((state) => {
+				existentItem.price = item.price;
+				existentItem.quantity = item.quantity;
+
+				return state;
+			});
+
+			existentItem.price = item.price;
+			existentItem.quantity = item.quantity;
+		} else {
+			setItems((state) => [...state, item]);
+		}		
 	}
 
 	function removeItemFromCart(id: string) {
