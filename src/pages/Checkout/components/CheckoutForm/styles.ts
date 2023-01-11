@@ -9,7 +9,7 @@ export const FormContainer = styled.div`
   }
 `;
 
-export const Form = styled.form`
+export const Form = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.875rem;
@@ -19,35 +19,77 @@ export const FormCard = styled.div`
   background: ${(props) => props.theme['base-card']};
   border-radius: 6px;
   padding: 2.5rem;
+`;
 
-  header {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
+export const AddressHeader = styled.header `
+  display: flex;
+    justify-content: space-between;
+    
     margin-bottom: 2rem;
 
     svg {
       color: ${(props) => props.theme['yellow-dark']};
     }
 
-    div {
-      line-height: 130%;
+    > div {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
 
-      h2 {
-        font-size: 1rem;
-        font-weight: normal;
-        color: ${(props) => props.theme['base-subtitle']};
-      }
+      div {
+        line-height: 130%;
 
-      p {
-        font-size: 0.875rem;
-        color: ${(props) => props.theme['base-text']};
+        h2 {
+          font-size: 1rem;
+          font-weight: normal;
+          color: ${(props) => props.theme['base-subtitle']};
+        }
+
+        p {
+          font-size: 0.875rem;
+          color: ${(props) => props.theme['base-text']};
+        }
       }
     }
+    
+    span svg {
+      animation: spin 1.25s infinite linear;
+    }
+
+    @keyframes spin {
+      from {
+        transform:rotate(0deg);
+      }
+      to {
+        transform:rotate(360deg);
+      }
+    }
+`;
+
+export const PaymentTypeHeader = styled.header`
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  
+  margin-bottom: 2rem;
+
+  svg {
+    color: ${(props) => props.theme['purple']};
   }
 
-  &:last-child header svg {
-    color: ${(props) => props.theme['purple']};
+  div {
+    line-height: 130%;
+
+    h2 {
+      font-size: 1rem;
+      font-weight: normal;
+      color: ${(props) => props.theme['base-subtitle']};
+    }
+
+    p {
+      font-size: 0.875rem;
+      color: ${(props) => props.theme['base-text']};
+    }
   }
 `;
 

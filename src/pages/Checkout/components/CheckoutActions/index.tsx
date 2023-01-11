@@ -4,7 +4,11 @@ import { CheckoutCoffeeCard } from '../CheckoutCoffeeCard';
 
 import { ActionsCard, CheckoutActionsContainer, EmptyCartText, FinishPurchaseButton, PurchaseSummary } from './styles';
 
-export function CheckoutActions() {
+interface CheckoutActionsProps {
+	onFinishPurchase: () => void;
+}
+
+export function CheckoutActions({ onFinishPurchase }: CheckoutActionsProps) {
 	const { items } = useCart();
 
 	const itemsTotal = items.reduce((acc, current) => acc + current.price, 0);
@@ -52,7 +56,10 @@ export function CheckoutActions() {
 					</div>
 				</PurchaseSummary>
 
-				<FinishPurchaseButton disabled={isFinishPurchaseButtonDisabled}>
+				<FinishPurchaseButton 
+					onClick={onFinishPurchase}
+					disabled={isFinishPurchaseButtonDisabled}
+				>
 					Confirmar pedido
 				</FinishPurchaseButton>
 			</ActionsCard>
