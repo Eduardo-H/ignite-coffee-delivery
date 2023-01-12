@@ -8,7 +8,9 @@ import {
 	PaymentTypesList, 
 	PaymentTypeButton, 
 	AddressHeader, 
-	PaymentTypeHeader 
+	PaymentTypeHeader, 
+	InputContainer,
+	InputRow
 } from './styles';
 import { useFormContext } from 'react-hook-form';
 
@@ -17,7 +19,7 @@ interface CheckoutFormProps {
 }
 
 export function CheckoutForm({ isSearchingCEP }: CheckoutFormProps) {
-	const { register } = useFormContext();
+	const { register, setValue, formState } = useFormContext();
 
 	return (
 		<FormContainer>
@@ -43,22 +45,45 @@ export function CheckoutForm({ isSearchingCEP }: CheckoutFormProps) {
 					</AddressHeader>
 
 					<FormInputList>
-						<input type="text" placeholder="CEP" disabled={isSearchingCEP} {...register('cep', { maxLength: 8 })} />
+						<InputContainer>
+							<input type="text" placeholder="CEP" disabled={isSearchingCEP} {...register('cep', { maxLength: 8 })} />
+							{formState.errors.cep && <span>{formState.errors.cep.message?.toString()}</span>}
+						</InputContainer>
 
-						<input type="text" placeholder="Rua" disabled={isSearchingCEP} {...register('street')} />
+						<InputContainer>
+							<input type="text" placeholder="Rua" disabled={isSearchingCEP} {...register('street')} />
+							{formState.errors.street && <span>{formState.errors.street.message?.toString()}</span>}
+						</InputContainer>
+						
 
-						<div>
-							<input type="text" placeholder="Número" disabled={isSearchingCEP} {...register('number')} />
-							<input type="text" placeholder="Complemento" disabled={isSearchingCEP} {...register('complement')} />
-						</div>
+						<InputRow>
+							<InputContainer>
+								<input type="text" placeholder="Número" disabled={isSearchingCEP} {...register('number')} />
+								{formState.errors.number && <span>{formState.errors.number.message?.toString()}</span>}
+							</InputContainer>
 
-						<div>
-							<input type="text" placeholder="Bairro" disabled={isSearchingCEP} {...register('district')} />
+							<InputContainer>
+								<input type="text" placeholder="Complemento" disabled={isSearchingCEP} {...register('complement')} />
+								{formState.errors.complement && <span>{formState.errors.complement.message?.toString()}</span>}
+							</InputContainer>							
+						</InputRow>
 
-							<input type="text" placeholder="Cidade" disabled={isSearchingCEP} {...register('city')} />
-
-							<input type="text" placeholder="UF" disabled={isSearchingCEP} {...register('state')} />
-						</div>
+						<InputRow>
+							<InputContainer>
+								<input type="text" placeholder="Bairro" disabled={isSearchingCEP} {...register('district')} />
+								{formState.errors.district && <span>{formState.errors.district.message?.toString()}</span>}
+							</InputContainer>
+							
+							<InputContainer>
+								<input type="text" placeholder="Cidade" disabled={isSearchingCEP} {...register('city')} />
+								{formState.errors.city && <span>{formState.errors.city.message?.toString()}</span>}
+							</InputContainer>
+							
+							<InputContainer>
+								<input type="text" placeholder="UF" disabled={isSearchingCEP} {...register('state')} />
+								{formState.errors.state && <span>{formState.errors.state.message?.toString()}</span>}
+							</InputContainer>
+						</InputRow>
 					</FormInputList>
 				</FormCard>
 
@@ -73,21 +98,21 @@ export function CheckoutForm({ isSearchingCEP }: CheckoutFormProps) {
 					</PaymentTypeHeader>
 						
 					<PaymentTypesList>
-						<PaymentTypeButton htmlFor="credit-card">
+						<PaymentTypeButton htmlFor="credit-card" onClick={() => setValue('paymentType', 'Cartão de Crédito')}>
 							<CreditCard size={16} />
 								Cartão de crédito
 
 							<input type="radio" id="credit-card" name="payment-type" hidden />
 						</PaymentTypeButton>
 
-						<PaymentTypeButton htmlFor="debit-card">
+						<PaymentTypeButton htmlFor="debit-card" onClick={() => setValue('paymentType', 'Cartão de Débito')}>
 							<Bank size={16} />
 								Cartão de débito
 
 							<input type="radio" id="debit-card" name="payment-type" hidden />
 						</PaymentTypeButton>
 
-						<PaymentTypeButton htmlFor="cash">
+						<PaymentTypeButton htmlFor="cash" onClick={() => setValue('paymentType', 'Dinheiro')}>
 							<Money size={16}/>
 								Dinheiro
 

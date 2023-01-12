@@ -1,3 +1,4 @@
+import { useFormContext } from 'react-hook-form';
 import { useCart } from '../../../../hooks/useCart';
 
 import { CheckoutCoffeeCard } from '../CheckoutCoffeeCard';
@@ -10,12 +11,13 @@ interface CheckoutActionsProps {
 
 export function CheckoutActions({ onFinishPurchase }: CheckoutActionsProps) {
 	const { items } = useCart();
+	const { formState } = useFormContext();
 
 	const itemsTotal = items.reduce((acc, current) => acc + current.price, 0);
 	const deliveryFee = itemsTotal * 0.2;
 	const totalPrice = itemsTotal + deliveryFee;
 
-	const isFinishPurchaseButtonDisabled = items.length === 0;
+	const isFinishPurchaseButtonDisabled = items.length === 0 || !formState.isValid;
 	
 	return (
 		<CheckoutActionsContainer>

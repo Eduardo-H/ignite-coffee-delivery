@@ -8,13 +8,14 @@ import { CheckoutContainer } from './styles';
 import { useEffect, useState } from 'react';
 
 const newPurchaseFormValidationSchema = zod.object({
-	cep: zod.string().max(8, 'Informe o CEP').regex(/^[0-9]{5}-[0-9]{3}$/, 'Informe um CEP válido'),
+	cep: zod.string().min(8, 'Informe um CEP completo'),
 	street: zod.string().min(1, 'Informe a rua'),
 	number: zod.string().min(1, 'Informe o número'),
-	complement: zod.string().nullable(),
+	complement: zod.string().optional(),
 	district: zod.string().min(1, 'Informe o bairro'),
 	city: zod.string().min(1, 'Informe a cidade'),
-	state: zod.string().min(2).max(2)
+	state: zod.string().min(2).max(2),
+	paymentType: zod.enum(['Cartão de Crédito', 'Cartão de Débito', 'Dinheiro'])
 });
 
 type NewPurchaseFormData = zod.infer<typeof newPurchaseFormValidationSchema>
@@ -31,15 +32,18 @@ export function Checkout() {
 			complement: '',
 			district: '',
 			city: '',
-			state: ''
+			state: '',
+			paymentType: undefined
 		}
 	});
 
-	const { watch, reset } = newPurchaseForm;
+	const { handleSubmit, watch, reset } = newPurchaseForm;
 
 	const cep = watch('cep');
 
-	function handleFinishPurchase() {
+	function handleFinishPurchase(data: NewPurchaseFormData) {
+		console.log(data);
+
 		reset();
 	}
 
@@ -74,13 +78,13 @@ export function Checkout() {
 
 	return (
 		<CheckoutContainer>
-			<form autoComplete="off">
-				<FormProvider {...newPurchaseForm}>
+			<FormProvider {...newPurchaseForm}>
+				<form autoComplete="off">
 					<CheckoutForm isSearchingCEP={isSearchingCEP} />
-				</FormProvider>
-			</form>
+				</form>
 
-			<CheckoutActions onFinishPurchase={handleFinishPurchase} />
+				<CheckoutActions onFinishPurchase={handleSubmit(handleFinishPurchase)} />
+			</FormProvider>
 		</CheckoutContainer>
 	);
 }

@@ -98,18 +98,25 @@ export const FormInputList = styled.div`
   flex-direction: column;
   gap: 1rem;
 
-  div {
-    display: grid;
-    gap: 0.875rem;
+  > div:first-child input {
+    width: 35%;
   }
+`;
 
-  div {
-    grid-template-columns: 35% 1fr;
-  }
+export const InputRow = styled.div`
+  display: grid;
+  gap: 0.875rem;
+  grid-template-columns: 35% 1fr;
 
-  div:last-child {
+  &:last-child {
     grid-template-columns: 35% 1fr 10%;
   }
+`;
+
+export const InputContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 
   input {
     padding: 0.75rem;
@@ -133,8 +140,9 @@ export const FormInputList = styled.div`
     }
   }
 
-  > input:first-child {
-    width: 35%;
+  span {
+    font-size: 0.75rem;
+    color: ${(props) => props.theme['red']};
   }
 `;
 
