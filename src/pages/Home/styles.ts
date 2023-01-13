@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const HomeContainer = styled.main`
   display: flex;
   flex-direction: column;
+
+  padding: 0 2rem;
 `;
 
 export const HeroContainer = styled.div`
@@ -12,6 +14,20 @@ export const HeroContainer = styled.div`
 
   padding: 5rem 0;
   gap: 1rem;
+  
+  @media (max-width: 1200px) {
+    img {
+      width: 40%;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    padding: 2rem 0 4rem 0;
+
+    img {
+      display: none;
+    }
+  }
 `;
 
 export const HeroInfo = styled.div`
@@ -28,6 +44,17 @@ export const HeroInfo = styled.div`
     font-size: 1.25rem;
     color: ${(props) => props.theme['base-subtitle']};
   }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.25rem;
+    }
+
+    p {
+      font-size: 1rem;
+      color: ${(props) => props.theme['base-subtitle']};
+    }
+  }
 `;
 
 export const HeroPerks = styled.div`
@@ -36,8 +63,9 @@ export const HeroPerks = styled.div`
   grid-gap: 1.25rem;
   margin-top: 4.125rem;
 
-  div {
-    
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    margin-top: 3rem;
   }
 `;
 
@@ -78,4 +106,16 @@ export const CoffeeList = styled.div`
   grid-row-gap: 2.5rem;
 
   margin: 3rem 0;
+
+  @media (max-width: 1124px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
 `;

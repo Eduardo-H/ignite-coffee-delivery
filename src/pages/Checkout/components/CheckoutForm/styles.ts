@@ -19,6 +19,10 @@ export const FormCard = styled.div`
   background: ${(props) => props.theme['base-card']};
   border-radius: 6px;
   padding: 2.5rem;
+
+  @media (max-width: 768px) {
+    padding: 2rem;
+  }
 `;
 
 export const AddressHeader = styled.header `
@@ -101,6 +105,12 @@ export const FormInputList = styled.div`
   > div:first-child input {
     width: 35%;
   }
+
+  @media (max-width: 768px) {
+    > div:first-child input {
+      width: 100%;
+    }
+  }
 `;
 
 export const InputRow = styled.div`
@@ -110,6 +120,14 @@ export const InputRow = styled.div`
 
   &:last-child {
     grid-template-columns: 35% 1fr 10%;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+
+    &:last-child {
+      grid-template-columns: 1fr;
+    }
   }
 `;
 
@@ -151,6 +169,11 @@ export const PaymentTypesList = styled.div`
   display: flex;
   align-items: center;
   gap: 0.875rem;
+
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 export const PaymentTypeButton = styled.label`
@@ -183,5 +206,9 @@ export const PaymentTypeButton = styled.label`
   :has(input:checked) {
     background: ${(props) => props.theme['purple-light']};
     border-color: ${(props) => props.theme['purple']};
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
   }
 `;
