@@ -1,6 +1,8 @@
 <div align="center">
-  <img src="./src/assets/app-logo.svg">
+  <img src="./src/assets/app-logo.svg" height="50px">
 </div>
+
+<br>
 
 <img src=".github/highlight.png">
 
@@ -12,13 +14,10 @@ You can see the template project's Figma template in [here](https://www.figma.co
 
 ## Technologies
 <img src=".github/react.png" height="70px">
-</br>
-</br>
+<br>
 <img src=".github/typescript.png" height="70px">
-</br>
-</br>
+<br>
 <img src=".github/styled-components.png" height="70px">
-</br>
-</br>
+<br>
 <img src=".github/react-hook-form.png" height="70px">
 
