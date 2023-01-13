@@ -6,6 +6,7 @@ import { CheckoutActions } from './components/CheckoutActions';
 import { CheckoutForm } from './components/CheckoutForm';
 import { CheckoutContainer } from './styles';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const newPurchaseFormValidationSchema = zod.object({
 	cep: zod.string().min(8, 'Informe um CEP completo'),
@@ -22,6 +23,8 @@ type NewPurchaseFormData = zod.infer<typeof newPurchaseFormValidationSchema>
 
 export function Checkout() {
 	const [isSearchingCEP, setIsSearchingCEP] = useState(false);
+
+	const navigate = useNavigate();
 
 	const newPurchaseForm = useForm<NewPurchaseFormData>({
 		resolver: zodResolver(newPurchaseFormValidationSchema),
@@ -42,6 +45,10 @@ export function Checkout() {
 	const cep = watch('cep');
 
 	function handleFinishPurchase(data: NewPurchaseFormData) {
+		localStorage.setItem('@coffee-delivery:delivery', JSON.stringify(data));
+
+		navigate('/success');
+
 		reset();
 	}
 

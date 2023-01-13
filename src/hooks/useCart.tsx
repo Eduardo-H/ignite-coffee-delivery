@@ -16,6 +16,7 @@ interface CartContextData {
 	cartTotalPrice: number;
   addItemToCart: (item: CartItem) => void;
   removeItemFromCart: (id: string) => void;
+	clearCart: () => void;
 }
 
 interface CartProviderProps {
@@ -66,6 +67,13 @@ export function CartProvider({ children }: CartProviderProps) {
 		setItems(filteredItems);
 	}
 
+	function clearCart() {
+		setItems([]);
+		setCartItemsPrice(0);
+		setCartDeliveryFee(0);
+		setCartTotalPrice(0);
+	}
+
 	return (
 		<CartContext.Provider value={{
 			items,
@@ -73,7 +81,8 @@ export function CartProvider({ children }: CartProviderProps) {
 			cartDeliveryFee,
 			cartTotalPrice,
 			addItemToCart,
-			removeItemFromCart
+			removeItemFromCart,
+			clearCart
 		}}>
 			{ children }
 		</CartContext.Provider>

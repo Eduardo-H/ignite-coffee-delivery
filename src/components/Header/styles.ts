@@ -7,7 +7,7 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
 
   width: 100%;
-  padding: 2rem 0;
+  padding: 2rem;
 `;
 
 export const ImageButton = styled(NavLink)`

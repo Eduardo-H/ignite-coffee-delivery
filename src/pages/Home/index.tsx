@@ -4,9 +4,14 @@ import { CoffeeCard } from '../../components/CoffeeCard';
 
 import { CoffeeList, CoffeeListContainer, HeroContainer, HeroInfo, HeroPerk, HeroPerks, HomeContainer } from './styles';
 import { coffeeSeeds } from '../../utils/coffee-seeds';
+import { useEffect } from 'react';
 
 export function Home() {
 	const coffees = coffeeSeeds;
+
+	useEffect(() => {
+		localStorage.clear();
+	}, []);
 
 	return (
 		<HomeContainer>
