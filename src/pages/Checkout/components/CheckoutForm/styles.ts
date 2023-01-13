@@ -139,11 +139,11 @@ export const InputContainer = styled.div`
       cursor: not-allowed;
     }
   }
+`;
 
-  span {
-    font-size: 0.75rem;
-    color: ${(props) => props.theme['red']};
-  }
+export const InputError = styled.span `
+  font-size: 0.75rem;
+  color: ${(props) => props.theme['red']};
 `;
 
 export const PaymentTypesList = styled.div`

@@ -14,7 +14,7 @@ const newPurchaseFormValidationSchema = zod.object({
 	complement: zod.string().optional(),
 	district: zod.string().min(1, 'Informe o bairro'),
 	city: zod.string().min(1, 'Informe a cidade'),
-	state: zod.string().min(2).max(2),
+	state: zod.string().min(2, 'Informe a UF').max(2, 'Informe a UF'),
 	paymentType: zod.enum(['Cartão de Crédito', 'Cartão de Débito', 'Dinheiro'])
 });
 
@@ -42,8 +42,6 @@ export function Checkout() {
 	const cep = watch('cep');
 
 	function handleFinishPurchase(data: NewPurchaseFormData) {
-		console.log(data);
-
 		reset();
 	}
 
@@ -57,12 +55,12 @@ export function Checkout() {
 				method: 'GET'
 			});
 
-			const cepData = await response.json();
+			const addressData = await response.json();
 
-			newPurchaseForm.setValue('street', cepData.address);
-			newPurchaseForm.setValue('district', cepData.district);
-			newPurchaseForm.setValue('city', cepData.city);
-			newPurchaseForm.setValue('state', cepData.state);
+			newPurchaseForm.setValue('street', addressData.address);
+			newPurchaseForm.setValue('district', addressData.district);
+			newPurchaseForm.setValue('city', addressData.city);
+			newPurchaseForm.setValue('state', addressData.state);
 		} catch(error) {
 			window.alert('O CEP informado não foi encontrado.');
 		} finally {

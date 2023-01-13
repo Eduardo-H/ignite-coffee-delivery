@@ -6,10 +6,14 @@ type CartItem = {
   photoUrl: string;
   price: number;
   quantity: number;
+	currentPrice: number;
 }
 
 interface CartContextData {
   items: CartItem[];
+	cartItemsPrice: number;
+	cartDeliveryFee: number;
+	cartTotalPrice: number;
   addItemToCart: (item: CartItem) => void;
   removeItemFromCart: (id: string) => void;
 }
@@ -22,6 +26,9 @@ const CartContext = createContext({} as CartContextData);
 
 export function CartProvider({ children }: CartProviderProps) {
 	const [items, setItems] = useState<CartItem[]>([]);
+	const [cartItemsPrice, setCartItemsPrice] = useState(0);
+	const [cartDeliveryFee, setCartDeliveryFee] = useState(0);
+	const [cartTotalPrice, setCartTotalPrice] = useState(0);
 
 	function addItemToCart(item: CartItem) {
 		const existentItem = items.find(cartItem => cartItem.id === item.id);
@@ -30,7 +37,7 @@ export function CartProvider({ children }: CartProviderProps) {
 			setItems((state) => {
 				state.forEach(cartItem => {
 					if (cartItem.id === item.id) {
-						cartItem.price = item.price;
+						cartItem.currentPrice = item.currentPrice;
 						cartItem.quantity = item.quantity;
 					}
 				});
@@ -40,6 +47,17 @@ export function CartProvider({ children }: CartProviderProps) {
 		} else {
 			setItems((state) => [...state, item]);
 		}
+		
+		setItems((state) => {
+			const itemsTotal = state.reduce((acc, current) => acc + current.currentPrice, 0);
+			const deliveryFee = itemsTotal * 0.2;
+
+			setCartItemsPrice(itemsTotal);
+			setCartDeliveryFee(deliveryFee);
+			setCartTotalPrice(itemsTotal + deliveryFee);
+
+			return state;
+		});
 	}
 
 	function removeItemFromCart(id: string) {
@@ -51,6 +69,9 @@ export function CartProvider({ children }: CartProviderProps) {
 	return (
 		<CartContext.Provider value={{
 			items,
+			cartItemsPrice,
+			cartDeliveryFee,
+			cartTotalPrice,
 			addItemToCart,
 			removeItemFromCart
 		}}>

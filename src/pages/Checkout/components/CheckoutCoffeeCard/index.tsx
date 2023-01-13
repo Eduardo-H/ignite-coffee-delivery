@@ -52,8 +52,9 @@ export function CheckoutCoffeeCard({
 			id,
 			name,
 			photoUrl,
-			price: itemPrice,
-			quantity: amount
+			price: price,
+			quantity: amount,
+			currentPrice: itemPrice
 		});
 	}
 

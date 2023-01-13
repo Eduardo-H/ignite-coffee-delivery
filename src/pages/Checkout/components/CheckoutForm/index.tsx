@@ -10,7 +10,8 @@ import {
 	AddressHeader, 
 	PaymentTypeHeader, 
 	InputContainer,
-	InputRow
+	InputRow,
+	InputError
 } from './styles';
 import { useFormContext } from 'react-hook-form';
 
@@ -47,41 +48,41 @@ export function CheckoutForm({ isSearchingCEP }: CheckoutFormProps) {
 					<FormInputList>
 						<InputContainer>
 							<input type="text" placeholder="CEP" disabled={isSearchingCEP} {...register('cep', { maxLength: 8 })} />
-							{formState.errors.cep && <span>{formState.errors.cep.message?.toString()}</span>}
+							{formState.errors.cep && <InputError>{formState.errors.cep.message?.toString()}</InputError>}
 						</InputContainer>
 
 						<InputContainer>
 							<input type="text" placeholder="Rua" disabled={isSearchingCEP} {...register('street')} />
-							{formState.errors.street && <span>{formState.errors.street.message?.toString()}</span>}
+							{formState.errors.street && <InputError>{formState.errors.street.message?.toString()}</InputError>}
 						</InputContainer>
 						
 
 						<InputRow>
 							<InputContainer>
 								<input type="text" placeholder="Número" disabled={isSearchingCEP} {...register('number')} />
-								{formState.errors.number && <span>{formState.errors.number.message?.toString()}</span>}
+								{formState.errors.number && <InputError>{formState.errors.number.message?.toString()}</InputError>}
 							</InputContainer>
 
 							<InputContainer>
 								<input type="text" placeholder="Complemento" disabled={isSearchingCEP} {...register('complement')} />
-								{formState.errors.complement && <span>{formState.errors.complement.message?.toString()}</span>}
+								{formState.errors.complement && <InputError>{formState.errors.complement.message?.toString()}</InputError>}
 							</InputContainer>							
 						</InputRow>
 
 						<InputRow>
 							<InputContainer>
 								<input type="text" placeholder="Bairro" disabled={isSearchingCEP} {...register('district')} />
-								{formState.errors.district && <span>{formState.errors.district.message?.toString()}</span>}
+								{formState.errors.district && <InputError>{formState.errors.district.message?.toString()}</InputError>}
 							</InputContainer>
 							
 							<InputContainer>
 								<input type="text" placeholder="Cidade" disabled={isSearchingCEP} {...register('city')} />
-								{formState.errors.city && <span>{formState.errors.city.message?.toString()}</span>}
+								{formState.errors.city && <InputError>{formState.errors.city.message?.toString()}</InputError>}
 							</InputContainer>
 							
 							<InputContainer>
 								<input type="text" placeholder="UF" disabled={isSearchingCEP} {...register('state')} />
-								{formState.errors.state && <span>{formState.errors.state.message?.toString()}</span>}
+								{formState.errors.state && <InputError>{formState.errors.state.message?.toString()}</InputError>}
 							</InputContainer>
 						</InputRow>
 					</FormInputList>
@@ -119,6 +120,8 @@ export function CheckoutForm({ isSearchingCEP }: CheckoutFormProps) {
 							<input type="radio" id="cash" name="payment-type" hidden />
 						</PaymentTypeButton>
 					</PaymentTypesList>
+
+					{formState.errors.paymentType && <InputError>Selecione um método de pagamento</InputError>}
 				</FormCard>
 			</Form>
 		</FormContainer>

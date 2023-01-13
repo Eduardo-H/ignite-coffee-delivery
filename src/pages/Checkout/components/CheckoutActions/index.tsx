@@ -1,4 +1,3 @@
-import { useFormContext } from 'react-hook-form';
 import { useCart } from '../../../../hooks/useCart';
 
 import { CheckoutCoffeeCard } from '../CheckoutCoffeeCard';
@@ -10,14 +9,9 @@ interface CheckoutActionsProps {
 }
 
 export function CheckoutActions({ onFinishPurchase }: CheckoutActionsProps) {
-	const { items } = useCart();
-	const { formState } = useFormContext();
+	const { items, cartItemsPrice, cartDeliveryFee, cartTotalPrice } = useCart();
 
-	const itemsTotal = items.reduce((acc, current) => acc + current.price, 0);
-	const deliveryFee = itemsTotal * 0.2;
-	const totalPrice = itemsTotal + deliveryFee;
-
-	const isFinishPurchaseButtonDisabled = items.length === 0 || !formState.isValid;
+	const isFinishPurchaseButtonDisabled = items.length === 0;
 	
 	return (
 		<CheckoutActionsContainer>
@@ -35,7 +29,7 @@ export function CheckoutActions({ onFinishPurchase }: CheckoutActionsProps) {
 									photoUrl={coffee.photoUrl}
 									quantity={coffee.quantity}
 									price={coffee.price}
-									currentPrice={coffee.price}
+									currentPrice={coffee.currentPrice}
 								/>
 							))
 						) : (
@@ -46,15 +40,15 @@ export function CheckoutActions({ onFinishPurchase }: CheckoutActionsProps) {
 				<PurchaseSummary>
 					<div>
 						<span>Total de itens</span>
-						<span>R$ {Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2 }).format(itemsTotal)}</span>
+						<span>R$ {Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2 }).format(cartItemsPrice)}</span>
 					</div>
 					<div>
 						<span>Entrega</span>
-						<span>R$ {Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2 }).format(deliveryFee)}</span>
+						<span>R$ {Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2 }).format(cartDeliveryFee)}</span>
 					</div>
 					<div>
 						<span>Total</span>
-						<span>R$ {Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2 }).format(totalPrice)}</span>
+						<span>R$ {Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2 }).format(cartTotalPrice)}</span>
 					</div>
 				</PurchaseSummary>
 
