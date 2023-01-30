@@ -49,6 +49,18 @@ export function CartProvider({ children }: CartProviderProps) {
 			setItems((state) => [...state, item]);
 		}
 		
+		updateCartSummary();
+	}
+
+	function removeItemFromCart(id: string) {
+		const filteredItems = items.filter(item => item.id !== id);
+
+		setItems(filteredItems);
+
+		updateCartSummary();
+	}
+
+	function updateCartSummary() {
 		setItems((state) => {
 			const itemsTotal = state.reduce((acc, current) => acc + current.currentPrice, 0);
 			const deliveryFee = itemsTotal * 0.2;
@@ -59,12 +71,6 @@ export function CartProvider({ children }: CartProviderProps) {
 
 			return state;
 		});
-	}
-
-	function removeItemFromCart(id: string) {
-		const filteredItems = items.filter(item => item.id !== id);
-
-		setItems(filteredItems);
 	}
 
 	function clearCart() {
