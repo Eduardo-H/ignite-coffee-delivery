@@ -30,7 +30,7 @@ export const coffeeSeeds: Coffee[] = [
 		description: 'O tradicional café feito com água quente e grãos moídos',
 		photoUrl: expressoTradicionalImg,
 		tags: ['tradicional'],
-		price: 9.9,
+		price: 4.9,
 		stockAmount: 20
 	},
 	{
@@ -39,7 +39,7 @@ export const coffeeSeeds: Coffee[] = [
 		description: 'Expresso diluído, menos intenso que o tradicional',
 		photoUrl: expressoAmericanoImg,
 		tags: ['tradicional'],
-		price: 9.9,
+		price: 5.5,
 		stockAmount: 20
 	},
 	{
@@ -48,7 +48,7 @@ export const coffeeSeeds: Coffee[] = [
 		description: 'Café expresso tradicional com espuma cremosa',
 		photoUrl: expressoCremosoImg,
 		tags: ['tradicional'],
-		price: 9.9,
+		price: 6.9,
 		stockAmount: 20
 	},
 	{
@@ -57,7 +57,7 @@ export const coffeeSeeds: Coffee[] = [
 		description: 'Bebida preparada com café expresso e cubos de gelo',
 		photoUrl: expressoGeladoImg,
 		tags: ['tradicional', 'gelado'],
-		price: 9.9,
+		price: 6.9,
 		stockAmount: 20
 	},
 	{
@@ -66,7 +66,7 @@ export const coffeeSeeds: Coffee[] = [
 		description: 'Meio a meio de expresso tradicional com leite vaporizado',
 		photoUrl: cafeComLeiteImg,
 		tags: ['tradicional', 'com leite'],
-		price: 9.9,
+		price: 5.9,
 		stockAmount: 20
 	},
 	{
@@ -93,7 +93,7 @@ export const coffeeSeeds: Coffee[] = [
 		description: 'Café expresso misturado com um pouco de leite quente e espuma',
 		photoUrl: macchiatoImg,
 		tags: ['tradicional', 'com leite'],
-		price: 9.9,
+		price: 12.5,
 		stockAmount: 20
 	},
 	{
@@ -111,7 +111,7 @@ export const coffeeSeeds: Coffee[] = [
 		description: 'Bebida feita com chocolate dissolvido no leite quente e café',
 		photoUrl: chocolateQuenteImg,
 		tags: ['especial', 'com leite'],
-		price: 9.9,
+		price: 14.9,
 		stockAmount: 20
 	},
 	{
@@ -120,7 +120,7 @@ export const coffeeSeeds: Coffee[] = [
 		description: 'Drink gelado de café expresso com rum, creme de leite e hortelã',
 		photoUrl: cubanoImg,
 		tags: ['especial', 'alcoólico', 'gelado'],
-		price: 9.9,
+		price: 14.9,
 		stockAmount: 20
 	},
 	{
@@ -129,7 +129,7 @@ export const coffeeSeeds: Coffee[] = [
 		description: 'Bebida adocicada preparada com café e leite de coco',
 		photoUrl: havaianoImg,
 		tags: ['especial'],
-		price: 9.9,
+		price: 14.9,
 		stockAmount: 20
 	},
 	{
@@ -138,7 +138,7 @@ export const coffeeSeeds: Coffee[] = [
 		description: 'Bebida preparada com grãos de café árabe e especiarias',
 		photoUrl: arabeImg,
 		tags: ['especial'],
-		price: 9.9,
+		price: 14.9,
 		stockAmount: 20
 	},
 	{
@@ -147,7 +147,7 @@ export const coffeeSeeds: Coffee[] = [
 		description: 'Bebida a base de café, uísque irlandês, açúcar e chantilly',
 		photoUrl: irlandesImg,
 		tags: ['especial', 'alcoólico'],
-		price: 9.9,
+		price: 19.9,
 		stockAmount: 20
 	}
 ];
