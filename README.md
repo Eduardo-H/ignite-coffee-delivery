@@ -14,10 +14,10 @@ You can see the template project's Figma template in [here](https://www.figma.co
 
 ## Technologies
 <img src=".github/react.png" height="65px">
-<br>
+
 <img src=".github/typescript.png" height="65px">
-<br>
+
 <img src=".github/styled-components.png" height="65px">
-<br>
+
 <img src=".github/react-hook-form.png" height="65px">
 
